@@ -1,0 +1,27 @@
+import pyspark
+from pyspark.sql import SparkSession
+import pyspark.sql.functions as F
+
+spark = SparkSession.builder.master("local[*]").appName('test').getOrCreate()
+
+# 1. question
+spark.version
+
+df = spark.read.option("header", "true").option("inferSchema", "true").csv("fhv_tripdata_2021-06.csv")
+
+# 2. question
+df_parti = df.repartition(12)
+df_parti.write.parquet("parti")
+
+# 3. question
+df.filter((F.to_timestamp('pickup_datetime', 'y-M-d H:mm:ss') >= F.to_timestamp(F.lit('2021-06-15 00:00:00'), 'y-M-d H:mm:ss')) & (F.to_timestamp('pickup_datetime', 'y-M-d H:mm:ss') < F.to_timestamp(F.lit('2021-06-16 00:00:00'), 'y-M-d H:mm:ss'))).count()
+
+
+# 4. question
+
+df.withColumn("trip_duration", (F.col("dropoff_datetime").cast("long") - F.col("pickup_datetime").cast("long"))/60/60).sort("trip_duration", ascending=False).show(truncate=False)
+
+# 6. question
+df2 = spark.read.option("header", "true").option("inferSchema", "true").csv("taxi_zone_lookup.csv")
+df.join(df2, df.PULocationID == df2.LocationID).groupby("Zone").count().sort("count", ascending=False).show()
+
