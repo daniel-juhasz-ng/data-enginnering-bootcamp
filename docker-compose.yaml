@@ -1,0 +1,85 @@
+services:
+  pg:
+    image: postgres:13
+    networks:
+      - backend
+    ports:
+      - "5432:5432"
+    environment:
+      - POSTGRES_USER=root
+      - POSTGRES_PASSWORD=root
+      - POSTGRES_DB=ny_taxi
+    volumes:
+      - backend-db:/var/lib/postgresql/data
+  pgadmin:
+    image: dpage/pgadmin4
+    networks:
+      - backend
+    ports:
+      - "8080:80"
+    environment:
+      - PGADMIN_DEFAULT_EMAIL=admin@admin.com
+      - PGADMIN_DEFAULT_PASSWORD=admin
+  pg-prefect:
+    image: postgres:13
+    networks:
+      - prefect
+    expose:
+      - "5432"
+    environment:
+      - POSTGRES_USER=root
+      - POSTGRES_PASSWORD=root
+      - POSTGRES_DB=orion
+    volumes:
+      - prefect-db:/var/lib/postgresql/data
+  prefect-api:
+    build:
+      dockerfile: Dockerfile-prefect
+    networks:
+      - prefect
+    restart: always
+    entrypoint: [ "prefect", "orion", "start" ]
+    environment:
+      - PREFECT_ORION_API_HOST=0.0.0.0
+      - PREFECT_ORION_DATABASE_CONNECTION_URL=postgresql+asyncpg://root:root@pg-prefect:5432/orion
+    ports:
+      - "4200:4200"
+    expose:
+      - "4200"
+    depends_on:
+      - pg-prefect
+  prefect-agent:
+    build:
+      dockerfile: Dockerfile-prefect
+    networks:
+      - prefect
+      - backend
+    restart: always
+    entrypoint: [ "prefect", "agent", "start", "--work-queue", "test"]
+    environment:
+      - PREFECT_API_URL=http://prefect-api:4200/api
+    depends_on:
+      - prefect-api
+  localstack:
+    image: localstack/localstack:latest
+    environment:
+      - AWS_DEFAULT_REGION=us-east-1
+      - SERVICES=s3
+      - EDGE_PORT=4566
+      - DATA_DIR=/tmp/localstack/data
+    ports:
+      - "4566:4566"
+    networks:
+      - prefect
+    volumes:
+      - localstack:/tmp/localstack/
+
+networks:
+  prefect:
+  backend:
+
+volumes:
+  prefect-db:
+  prefect-api:
+  backend-db:
+  localstack:

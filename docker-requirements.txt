@@ -1,0 +1,8 @@
+pandas
+sqlalchemy
+psycopg2-binary
+pyarrow
+prefect
+prefect-sqlalchemy
+requests
+s3fs
