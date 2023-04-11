@@ -13,18 +13,23 @@ resource "google_bigquery_dataset" "museum_dataset_processed" {
   location   = var.region
 }
 
+resource "google_storage_bucket" "spark_temp_bucket" {
+  location = var.region
+  name     = "spark_temp"
+}
+
 # MIA
 
 resource "google_storage_bucket" "mia_bucket" {
-  name = "mia_objects"
+  name     = "mia_objects"
   location = var.region
 }
 
 resource "google_bigquery_table" "mia_table" {
-  count  = var.create_bigquery ? 1 : 0
+  count = var.create_bigquery ? 1 : 0
 
   dataset_id = google_bigquery_dataset.museum_dataset_raw.dataset_id
-  table_id = "mia_objects_table"
+  table_id   = "mia_objects_table"
 
   external_data_configuration {
     autodetect    = true
@@ -36,15 +41,15 @@ resource "google_bigquery_table" "mia_table" {
 # Cooper Hevit
 
 resource "google_storage_bucket" "cooper_hevit_bucket" {
-  name = "cooper_hevit_objects"
+  name     = "cooper_hevit_objects"
   location = var.region
 }
 
 resource "google_bigquery_table" "cooper_hevit_table" {
-  count  = var.create_bigquery ? 1 : 0
+  count = var.create_bigquery ? 1 : 0
 
   dataset_id = google_bigquery_dataset.museum_dataset_raw.dataset_id
-  table_id = "cooper_hevit_objects_table"
+  table_id   = "cooper_hevit_objects_table"
 
   external_data_configuration {
     autodetect    = true
@@ -56,15 +61,15 @@ resource "google_bigquery_table" "cooper_hevit_table" {
 # Tate
 
 resource "google_storage_bucket" "tate_bucket" {
-  name = "tate_objects"
+  name     = "tate_objects"
   location = var.region
 }
 
 resource "google_bigquery_table" "tate_table" {
-  count  = var.create_bigquery ? 1 : 0
+  count = var.create_bigquery ? 1 : 0
 
   dataset_id = google_bigquery_dataset.museum_dataset_raw.dataset_id
-  table_id = "tate_objects_table"
+  table_id   = "tate_objects_table"
 
   external_data_configuration {
     autodetect    = true

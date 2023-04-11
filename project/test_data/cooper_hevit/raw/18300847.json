@@ -1,0 +1,150 @@
+{
+    "id": "18300847",
+    "tms:id": "39327",
+    "accession_number": "1923-46-59",
+    "title": "Trimming",
+    "title_raw": null,
+    "url": "https:\/\/collection.cooperhewitt.org\/objects\/18300847\/",
+    "has_no_known_copyright": null,
+    "department_id": "35347501",
+    "period_id": null,
+    "media_id": "35371135",
+    "type_id": "35254635",
+    "date": null,
+    "year_start": null,
+    "year_end": null,
+    "year_acquired": "1923",
+    "decade": null,
+    "woe:country_id": null,
+    "medium": null,
+    "markings": null,
+    "signed": null,
+    "inscribed": null,
+    "provenance": null,
+    "dimensions": null,
+    "dimensions_raw": null,
+    "creditline": null,
+    "description": null,
+    "justification": null,
+    "gallery_text": null,
+    "label_text": null,
+    "videos": null,
+    "on_display": null,
+    "woe:country": null,
+    "type": "Trimming",
+    "images": [
+        {
+            "b": {
+                "url": "https:\/\/images.collection.cooperhewitt.org\/205559_fc6700e9cf434262_b.jpg",
+                "width": 1024,
+                "height": 517,
+                "is_primary": "1",
+                "image_id": "205559"
+            },
+            "z": {
+                "url": "https:\/\/images.collection.cooperhewitt.org\/205559_fc6700e9cf434262_z.jpg",
+                "width": 640,
+                "height": 323,
+                "is_primary": "1",
+                "image_id": "205559"
+            },
+            "n": {
+                "url": "https:\/\/images.collection.cooperhewitt.org\/205559_fc6700e9cf434262_n.jpg",
+                "width": 320,
+                "height": 162,
+                "is_primary": "1",
+                "image_id": "205559"
+            },
+            "d": {
+                "url": "https:\/\/images.collection.cooperhewitt.org\/205559_fc6700e9cf434262_d.gif",
+                "width": 320,
+                "height": 162,
+                "is_primary": "1",
+                "image_id": "205559"
+            },
+            "sq": {
+                "url": "https:\/\/images.collection.cooperhewitt.org\/205559_fc6700e9cf434262_sq.jpg",
+                "width": 300,
+                "height": 300,
+                "is_primary": "1",
+                "image_id": "205559"
+            }
+        },
+        {
+            "b": {
+                "url": "https:\/\/images.collection.cooperhewitt.org\/69049_0f08a941f23c2363_b.jpg",
+                "width": 1024,
+                "height": 502,
+                "is_primary": "0",
+                "image_id": "69049"
+            },
+            "z": {
+                "url": "https:\/\/images.collection.cooperhewitt.org\/69049_0f08a941f23c2363_z.jpg",
+                "width": 640,
+                "height": 314,
+                "is_primary": "0",
+                "image_id": "69049"
+            },
+            "n": {
+                "url": "https:\/\/images.collection.cooperhewitt.org\/69049_0f08a941f23c2363_n.jpg",
+                "width": 320,
+                "height": 157,
+                "is_primary": "0",
+                "image_id": "69049"
+            },
+            "d": {
+                "url": "https:\/\/images.collection.cooperhewitt.org\/69049_0f08a941f23c2363_d.gif",
+                "width": 320,
+                "height": 157,
+                "is_primary": "0",
+                "image_id": "69049"
+            },
+            "sq": {
+                "url": "https:\/\/images.collection.cooperhewitt.org\/69049_0f08a941f23c2363_sq.jpg",
+                "width": 300,
+                "height": 300,
+                "is_primary": "0",
+                "image_id": "69049"
+            }
+        }
+    ],
+    "participants": [
+
+    ],
+    "tombstone": {
+        "epitaph": "Trimming; 1923-46-59"
+    },
+    "colors": [
+        {
+            "color": "#9b804f",
+            "closest_crayola": "#8a795d",
+            "closest_css3": "#cd853f",
+            "closest_css4": "#cd853f"
+        },
+        {
+            "color": "#c7b47c",
+            "closest_crayola": "#bab86c",
+            "closest_css3": "#d2b48c",
+            "closest_css4": "#d2b48c"
+        },
+        {
+            "color": "#dad6c8",
+            "closest_crayola": "#dbd7d2",
+            "closest_css3": "#d3d3d3",
+            "closest_css4": "#d3d3d3"
+        },
+        {
+            "color": "#95908b",
+            "closest_crayola": "#95918c",
+            "closest_css3": "#808080",
+            "closest_css4": "#808080"
+        },
+        {
+            "color": "#795a3b",
+            "closest_crayola": "#714b23",
+            "closest_css3": "#556b2f",
+            "closest_css4": "#556b2f"
+        }
+    ],
+    "is_loan_object": 0
+}

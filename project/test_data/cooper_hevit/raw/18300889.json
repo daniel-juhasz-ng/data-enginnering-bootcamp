@@ -1,0 +1,135 @@
+{
+    "id": "18300889",
+    "tms:id": "39333",
+    "accession_number": "1923-46-65",
+    "title": "Fragment, late 19th century",
+    "title_raw": null,
+    "url": "https:\/\/collection.cooperhewitt.org\/objects\/18300889\/",
+    "has_no_known_copyright": "1",
+    "department_id": "35347501",
+    "period_id": null,
+    "media_id": "35392431",
+    "type_id": "35254623",
+    "date": "late 19th century",
+    "year_start": null,
+    "year_end": null,
+    "year_acquired": "1923",
+    "decade": null,
+    "woe:country_id": null,
+    "medium": "silk (?)",
+    "markings": null,
+    "signed": null,
+    "inscribed": null,
+    "provenance": null,
+    "dimensions": "H x W: 19 \u00d7 70.5 cm (7 1\/2 \u00d7 27 3\/4 in.)",
+    "dimensions_raw": null,
+    "creditline": null,
+    "description": "Fragment of black and white velvet in a mottled pattern suggesting fur. Cut in a scarf shape and lined with tan and black striped taffeta.",
+    "justification": null,
+    "gallery_text": null,
+    "label_text": null,
+    "videos": null,
+    "on_display": null,
+    "woe:country": null,
+    "type": "Fragment",
+    "images": [
+        {
+            "x": {
+                "url": "https:\/\/images.collection.cooperhewitt.org\/224256_fec060991b48467d_x.jpg",
+                "width": 4095,
+                "height": 1322,
+                "is_primary": "1",
+                "image_id": "224256"
+            },
+            "b": {
+                "url": "https:\/\/images.collection.cooperhewitt.org\/224256_b82806567438dbe2_b.jpg",
+                "width": 1024,
+                "height": 331,
+                "is_primary": "1",
+                "image_id": "224256"
+            },
+            "z": {
+                "url": "https:\/\/images.collection.cooperhewitt.org\/224256_b82806567438dbe2_z.jpg",
+                "width": 640,
+                "height": 207,
+                "is_primary": "1",
+                "image_id": "224256"
+            },
+            "n": {
+                "url": "https:\/\/images.collection.cooperhewitt.org\/224256_b82806567438dbe2_n.jpg",
+                "width": 320,
+                "height": 103,
+                "is_primary": "1",
+                "image_id": "224256"
+            },
+            "d": {
+                "url": "https:\/\/images.collection.cooperhewitt.org\/224256_b82806567438dbe2_d.gif",
+                "width": 320,
+                "height": 103,
+                "is_primary": "1",
+                "image_id": "224256"
+            },
+            "sq": {
+                "url": "https:\/\/images.collection.cooperhewitt.org\/224256_b82806567438dbe2_sq.jpg",
+                "width": 300,
+                "height": 300,
+                "is_primary": "1",
+                "image_id": "224256"
+            }
+        },
+        {
+            "o": {
+                "url": "https:\/\/images.collection.cooperhewitt.org\/69056_359ce26aa871ac94_o.jpg",
+                "width": 3000,
+                "height": 1039,
+                "is_primary": "0",
+                "image_id": "69056"
+            },
+            "b": {
+                "url": "https:\/\/images.collection.cooperhewitt.org\/69056_e7a865d273a0fdfb_b.jpg",
+                "width": 1024,
+                "height": 355,
+                "is_primary": "0",
+                "image_id": "69056"
+            },
+            "z": {
+                "url": "https:\/\/images.collection.cooperhewitt.org\/69056_e7a865d273a0fdfb_z.jpg",
+                "width": 640,
+                "height": 222,
+                "is_primary": "0",
+                "image_id": "69056"
+            },
+            "n": {
+                "url": "https:\/\/images.collection.cooperhewitt.org\/69056_e7a865d273a0fdfb_n.jpg",
+                "width": 320,
+                "height": 111,
+                "is_primary": "0",
+                "image_id": "69056"
+            },
+            "d": {
+                "url": "https:\/\/images.collection.cooperhewitt.org\/69056_e7a865d273a0fdfb_d.gif",
+                "width": 320,
+                "height": 111,
+                "is_primary": "0",
+                "image_id": "69056"
+            },
+            "sq": {
+                "url": "https:\/\/images.collection.cooperhewitt.org\/69056_e7a865d273a0fdfb_sq.jpg",
+                "width": 300,
+                "height": 300,
+                "is_primary": "0",
+                "image_id": "69056"
+            }
+        }
+    ],
+    "participants": [
+
+    ],
+    "tombstone": {
+        "epitaph": "Fragment, late 19th century; silk (?); H x W: 19 \u00d7 70.5 cm (7 1\/2 \u00d7 27 3\/4 in.); 1923-46-65"
+    },
+    "colors": [
+
+    ],
+    "is_loan_object": 0
+}

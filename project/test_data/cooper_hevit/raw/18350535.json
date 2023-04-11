@@ -1,0 +1,131 @@
+{
+    "id": "18350535",
+    "tms:id": "58835",
+    "accession_number": "1938-57-638",
+    "title": "Cup, 1726\u20131730",
+    "title_raw": null,
+    "url": "https:\/\/collection.cooperhewitt.org\/objects\/18350535\/",
+    "has_no_known_copyright": "1",
+    "department_id": "35347497",
+    "period_id": null,
+    "media_id": "874390655",
+    "type_id": "35249795",
+    "date": "1726\u20131730",
+    "year_start": null,
+    "year_end": null,
+    "year_acquired": "1938",
+    "decade": null,
+    "woe:country_id": null,
+    "medium": "porcelain, overglaze gilding",
+    "markings": null,
+    "signed": null,
+    "inscribed": null,
+    "provenance": "Erskine Hewitt; 1938: acquired by Museum",
+    "dimensions": "H x diam.: 8.2 \u00d7 7.8 cm (3 1\/4 \u00d7 3 1\/16 in.)",
+    "dimensions_raw": null,
+    "creditline": "Bequest of Erskine Hewitt",
+    "description": "Bell shaped with ring foot. Engraved gilt chinoiserie decoration of figure, trees, birds and scrolls.",
+    "justification": null,
+    "gallery_text": null,
+    "label_text": null,
+    "videos": null,
+    "on_display": null,
+    "woe:country": null,
+    "type": "cup",
+    "images": [
+        {
+            "x": {
+                "url": "https:\/\/images.collection.cooperhewitt.org\/110027_031a7b7a4ec2bab9_x.jpg",
+                "width": 2962,
+                "height": 2923,
+                "is_primary": "1",
+                "image_id": "110027"
+            },
+            "b": {
+                "url": "https:\/\/images.collection.cooperhewitt.org\/110027_aae0952918327ef6_b.jpg",
+                "width": 1024,
+                "height": 1011,
+                "is_primary": "1",
+                "image_id": "110027"
+            },
+            "z": {
+                "url": "https:\/\/images.collection.cooperhewitt.org\/110027_aae0952918327ef6_z.jpg",
+                "width": 640,
+                "height": 632,
+                "is_primary": "1",
+                "image_id": "110027"
+            },
+            "n": {
+                "url": "https:\/\/images.collection.cooperhewitt.org\/110027_aae0952918327ef6_n.jpg",
+                "width": 320,
+                "height": 316,
+                "is_primary": "1",
+                "image_id": "110027"
+            },
+            "d": {
+                "url": "https:\/\/images.collection.cooperhewitt.org\/110027_aae0952918327ef6_d.gif",
+                "width": 320,
+                "height": 316,
+                "is_primary": "1",
+                "image_id": "110027"
+            },
+            "sq": {
+                "url": "https:\/\/images.collection.cooperhewitt.org\/110027_aae0952918327ef6_sq.jpg",
+                "width": 300,
+                "height": 300,
+                "is_primary": "1",
+                "image_id": "110027"
+            }
+        }
+    ],
+    "participants": [
+        {
+            "person_id": "51686969",
+            "role_id": "35352245",
+            "person_name": "Rebekah Pollock",
+            "person_date": "American, b. 1982",
+            "role_name": "Cataloguer",
+            "role_display_name": "Catalogued by",
+            "person_url": "https:\/\/collection.cooperhewitt.org\/people\/51686969\/",
+            "role_url": "https:\/\/collection.cooperhewitt.org\/roles\/35352245\/"
+        },
+        {
+            "person_id": "18043857",
+            "role_id": "35236657",
+            "person_name": "Meissen Porcelain Factory",
+            "person_date": "Meissen, Germany, founded 1710",
+            "role_name": "Manufacturer",
+            "role_display_name": "Manufactured by",
+            "person_url": "https:\/\/collection.cooperhewitt.org\/people\/18043857\/",
+            "role_url": "https:\/\/collection.cooperhewitt.org\/roles\/35236657\/"
+        },
+        {
+            "person_id": "18050021",
+            "role_id": "35351537",
+            "person_name": "Erskine Hewitt",
+            "person_date": "American, 1871\u20131938",
+            "role_name": "Bequestor",
+            "role_display_name": "Bequest of",
+            "person_url": "https:\/\/collection.cooperhewitt.org\/people\/18050021\/",
+            "role_url": "https:\/\/collection.cooperhewitt.org\/roles\/35351537\/"
+        }
+    ],
+    "tombstone": {
+        "epitaph": "Cup, 1726\u20131730; Manufactured by Meissen Porcelain Factory (Germany); porcelain, overglaze gilding; H x diam.: 8.2 \u00d7 7.8 cm (3 1\/4 \u00d7 3 1\/16 in.); Bequest of Erskine Hewitt; 1938-57-638"
+    },
+    "colors": [
+        {
+            "color": "#9f8c5f",
+            "closest_crayola": "#9f8170",
+            "closest_css3": "#808080",
+            "closest_css4": "#808080"
+        },
+        {
+            "color": "#dfdbc4",
+            "closest_crayola": "#dbd7d2",
+            "closest_css3": "#d3d3d3",
+            "closest_css4": "#d3d3d3"
+        }
+    ],
+    "is_loan_object": 0
+}
