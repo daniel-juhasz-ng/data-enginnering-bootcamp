@@ -1,4 +1,5 @@
 1. Requirements.txt
+     
 2. Readme update
 
 ## Introduction
@@ -92,14 +93,14 @@ Make sure that python is installed
        - `terraform init`
        - `terraform apply -var-file="./vars/init.tfvars"`
 5. Upload the files
-    1. Download or copy github
+    1. Download or copy github or skip this test and use test_data, which includes a smaller subset of data
         - https://github.com/tategallery/collection
         - https://github.com/cooperhewitt/collection
         - https://github.com/artsmia/collection
     2. Run the shell script to make the JSON files new line delimited JSON files
-        - `./convert_json_to_single_line.sh ./test_data/cooper_hevit/raw ./test_data/cooper_hevit/one_line`
-        - `./convert_json_to_single_line.sh ./test_data/mia/raw ./test_data/mia/one_line`
-        - `./convert_json_to_single_line.sh ./test_data/tate/raw ./test_data/tate/one_line`
+        - `./util/convert_json_to_single_line.sh ./test_data/cooper_hevit/raw ./test_data/cooper_hevit/one_line`
+        - `./util/convert_json_to_single_line.sh ./test_data/mia/raw ./test_data/mia/one_line`
+        - `./util/convert_json_to_single_line.sh ./test_data/tate/raw ./test_data/tate/one_line`
     3. Upload the files with the provided python script
         - `python3 ./upload_json.py project-id cooper-hevit-bucket-name ./test_data/cooper_hevit/one_line`
         - `python3 ./upload_json.py project-id tate-bucket-name ./test_data/tate/one_line`
@@ -115,3 +116,4 @@ Make sure that python is installed
 ## TODO
 
 - Fix tate collection spark script to process the record type from bigquery
+- Store the terraform state in a bucket - terraform is updated, only the bucket creation is missing

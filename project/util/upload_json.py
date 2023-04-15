@@ -29,6 +29,6 @@ for root, dirs, files in os.walk(directory_path):
             # Construct the full file path
             file_path = os.path.join(root, file)
             # Create a blob object for the file
-            blob = bucket.blob(file_path)
+            blob = bucket.blob(file)
             # Upload the file to the bucket
             blob.upload_from_filename(file_path)

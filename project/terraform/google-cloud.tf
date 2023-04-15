@@ -1,3 +1,17 @@
+locals {
+  tate_schema = jsondecode(file("tate_schema.json"))
+  mia_schema = jsondecode(file("mia_schema.json"))
+  cooper_hevit_schema = jsondecode(file("cooper_hevit_schema.json"))
+}
+
+terraform {
+  backend "gcs" {
+    bucket = "data-eng-bootcamp-tf-state"
+    prefix = "terraform/state"
+  }
+}
+
+
 provider "google" {
   project = var.project
   region  = var.region
@@ -31,8 +45,10 @@ resource "google_bigquery_table" "mia_table" {
   dataset_id = google_bigquery_dataset.museum_dataset_raw.dataset_id
   table_id   = "mia_objects_table"
 
+  schema = jsonencode(local.mia_schema)
+
   external_data_configuration {
-    autodetect    = true
+    autodetect    = false
     source_format = "NEWLINE_DELIMITED_JSON"
     source_uris   = ["gs://${google_storage_bucket.mia_bucket.name}/*.json"]
   }
@@ -51,8 +67,10 @@ resource "google_bigquery_table" "cooper_hevit_table" {
   dataset_id = google_bigquery_dataset.museum_dataset_raw.dataset_id
   table_id   = "cooper_hevit_objects_table"
 
+  schema = jsonencode(local.cooper_hevit_schema)
+
   external_data_configuration {
-    autodetect    = true
+    autodetect    = false
     source_format = "NEWLINE_DELIMITED_JSON"
     source_uris   = ["gs://${google_storage_bucket.cooper_hevit_bucket.name}/*.json"]
   }
@@ -71,8 +89,10 @@ resource "google_bigquery_table" "tate_table" {
   dataset_id = google_bigquery_dataset.museum_dataset_raw.dataset_id
   table_id   = "tate_objects_table"
 
+  schema = jsonencode(local.tate_schema)
+
   external_data_configuration {
-    autodetect    = true
+    autodetect    = false
     source_format = "NEWLINE_DELIMITED_JSON"
     source_uris   = ["gs://${google_storage_bucket.tate_bucket.name}/*.json"]
   }

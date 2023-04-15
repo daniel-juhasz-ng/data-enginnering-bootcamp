@@ -15,10 +15,6 @@ convert_json_to_single_line() {
   if [[ "${source_file}" == *.json ]]; then
     # Convert the JSON file to a single line JSON document using the provided command
     cat "${source_file}" | tr '\n' ' ' > "${destination_file}"
-    # Wrap the single line JSON document with '{' and '}' at the beginning and end
-    echo "{" >> "${destination_file}"
-    echo -n $(cat "${destination_file}") >> "${destination_file}"
-    echo "}" >> "${destination_file}"
     echo "Converted: ${source_file} -> ${destination_file}"
   fi
 }
@@ -27,11 +23,17 @@ convert_json_to_single_line() {
 source_directory="$1"
 destination_directory="$2"
 
+# Create the destination directory if it doesn't exist
+if [ ! -d "${destination_directory}" ]; then
+  mkdir -p "${destination_directory}"
+  echo "Created destination directory: ${destination_directory}"
+fi
+
 # Find all JSON files recursively in the source directory
 find "${source_directory}" -name "*.json" -type f | while read -r file; do
   # Construct the destination file path by replacing the source directory path with the destination directory path
   destination_file="${file//$source_directory/$destination_directory}"
-  convert_json_to_single_line "${file}" "${destination_file}.singleline"
+  convert_json_to_single_line "${file}" "${destination_file}"
 done
 
 echo "Conversion complete!"
