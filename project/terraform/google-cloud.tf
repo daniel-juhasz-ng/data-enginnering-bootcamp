@@ -1,7 +1,5 @@
 locals {
-  tate_schema = jsondecode(file("tate_schema.json"))
-  mia_schema = jsondecode(file("mia_schema.json"))
-  cooper_hevit_schema = jsondecode(file("cooper_hevit_schema.json"))
+  crime_schema = jsondecode(file("./schema/crime_schema.json"))
 }
 
 terraform {
@@ -17,84 +15,39 @@ provider "google" {
   region  = var.region
 }
 
-resource "google_bigquery_dataset" "museum_dataset_raw" {
-  dataset_id = "museum_objects_raw"
+resource "google_bigquery_dataset" "crime_raw" {
+  dataset_id = "crime_raw"
   location   = var.region
 }
 
-resource "google_bigquery_dataset" "museum_dataset_processed" {
-  dataset_id = "museum_objects_processed"
+resource "google_bigquery_dataset" "crime_processed" {
+  dataset_id = "crime_processed"
   location   = var.region
 }
 
-resource "google_storage_bucket" "spark_temp_bucket" {
-  location = var.region
-  name     = "spark_temp"
-}
-
-# MIA
-
-resource "google_storage_bucket" "mia_bucket" {
-  name     = "mia_objects"
+resource "google_storage_bucket" "crime_raw_bucket" {
+  name     = "crime_raw_bucket"
   location = var.region
 }
 
-resource "google_bigquery_table" "mia_table" {
+resource "google_bigquery_table" "crime_table" {
   count = var.create_bigquery ? 1 : 0
 
-  dataset_id = google_bigquery_dataset.museum_dataset_raw.dataset_id
-  table_id   = "mia_objects_table"
+  dataset_id = google_bigquery_dataset.crime_raw.dataset_id
+  table_id = "crime_table"
 
-  schema = jsonencode(local.mia_schema)
-
-  external_data_configuration {
-    autodetect    = false
-    source_format = "NEWLINE_DELIMITED_JSON"
-    source_uris   = ["gs://${google_storage_bucket.mia_bucket.name}/*.json"]
-  }
-}
-
-# Cooper Hevit
-
-resource "google_storage_bucket" "cooper_hevit_bucket" {
-  name     = "cooper_hevit_objects"
-  location = var.region
-}
-
-resource "google_bigquery_table" "cooper_hevit_table" {
-  count = var.create_bigquery ? 1 : 0
-
-  dataset_id = google_bigquery_dataset.museum_dataset_raw.dataset_id
-  table_id   = "cooper_hevit_objects_table"
-
-  schema = jsonencode(local.cooper_hevit_schema)
+  schema = locals.crime_schema
 
   external_data_configuration {
-    autodetect    = false
-    source_format = "NEWLINE_DELIMITED_JSON"
-    source_uris   = ["gs://${google_storage_bucket.cooper_hevit_bucket.name}/*.json"]
-  }
-}
-
-# Tate
-
-resource "google_storage_bucket" "tate_bucket" {
-  name     = "tate_objects"
-  location = var.region
-}
-
-resource "google_bigquery_table" "tate_table" {
-  count = var.create_bigquery ? 1 : 0
-
-  dataset_id = google_bigquery_dataset.museum_dataset_raw.dataset_id
-  table_id   = "tate_objects_table"
-
-  schema = jsonencode(local.tate_schema)
-
-  external_data_configuration {
-    autodetect    = false
-    source_format = "NEWLINE_DELIMITED_JSON"
-    source_uris   = ["gs://${google_storage_bucket.tate_bucket.name}/*.json"]
+    autodetect = false
+    source_format = "CSV"
+    source_uris = ["gs://${google_storage_bucket.crime_raw_bucket.name}/*.csv"]
+    csv_options {
+      skip_leading_rows = 1
+      field_delimiter = ";"
+      allow_quoted_newlines = false
+      quote = ""
+    }
   }
 }
 
@@ -112,17 +65,5 @@ resource "google_project_service" "bigquery_api" {
   disable_dependent_services = true
 }
 
-
-resource "google_project_service" "dataproc_api" {
-  project = var.project
-  service = "dataproc.googleapis.com"
-
-  timeouts {
-    create = "30m"
-    update = "40m"
-  }
-
-  disable_dependent_services = true
-}
 
 

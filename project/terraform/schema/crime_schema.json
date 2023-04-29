@@ -1,0 +1,46 @@
+[
+  {
+    "name": "id",
+    "type": "STRING"
+  },
+{
+    "name": "month",
+    "type": "STRING"
+  },
+{
+    "name": "reported_by",
+    "type": "STRING"
+  },
+{
+    "name": "falls_within",
+    "type": "STRING"
+  },
+{
+    "name": "longitude",
+    "type": "STRING"
+  },
+{
+    "name": "latitude",
+    "type": "FLOAT64"
+  },
+{
+    "name": "location",
+    "type": "FLOAT64"
+  },
+{
+    "name": "lsoa_code",
+    "type": "STRING"
+  },
+{
+    "name": "lsoa_name",
+    "type": "STRING"
+  },
+{
+    "name": "crime_type",
+    "type": "STRING"
+  },
+{
+    "name": "last_outcome_category",
+    "type": "STRING"
+  }
+]
