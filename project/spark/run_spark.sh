@@ -15,4 +15,6 @@ bucket_name="$3"
 gcloud dataproc batches submit pyspark "$py_file" \
 --region="$region" \
 --deps-bucket="$bucket_name" \
+--properties spark.executor.instances=2,spark.driver.cores=4,spark.executor.cores=4 \
+--version 2.1 \
 --jars=gs://spark-lib/bigquery/spark-bigquery-with-dependencies_2.12-version.jar

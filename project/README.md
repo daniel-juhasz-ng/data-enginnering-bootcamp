@@ -115,5 +115,12 @@ Make sure that python is installed
 
 ## TODO
 
-- Fix tate collection spark script to process the record type from bigquery
 - Store the terraform state in a bucket - terraform is updated, only the bucket creation is missing
+- Make the spark temp bucket randomized name
+- Maybe add logging to the upload scripts to know where we are
+- Update readme to use makefile
+- Add auto apply to terraform
+- Update spark scripts to process JSON
+- Create custom VPC with private network access enabled, might need to update BQ too and the spark submit must be also updated
+https://stackoverflow.com/questions/44189120/processing-json-strings-in-a-spark-dataframe-column
+https://sparkbyexamples.com/pyspark/pyspark-json-functions-with-examples/ - get json object

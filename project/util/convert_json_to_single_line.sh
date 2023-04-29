@@ -15,6 +15,7 @@ convert_json_to_single_line() {
   if [[ "${source_file}" == *.json ]]; then
     # Convert the JSON file to a single line JSON document using the provided command
     cat "${source_file}" | tr '\n' ' ' > "${destination_file}"
+    sed -i 's/;/-/g' "${destination_file}"
     echo "Converted: ${source_file} -> ${destination_file}"
   fi
 }
