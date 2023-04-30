@@ -1,5 +1,9 @@
 [
   {
+    "name": "Crime_ID",
+    "type": "STRING"
+  },
+  {
     "name": "id",
     "type": "STRING"
   },
@@ -17,15 +21,15 @@
   },
 {
     "name": "longitude",
-    "type": "STRING"
+    "type": "FLOAT"
   },
 {
     "name": "latitude",
-    "type": "FLOAT64"
+    "type": "FLOAT"
   },
 {
     "name": "location",
-    "type": "FLOAT64"
+    "type": "STRING"
   },
 {
     "name": "lsoa_code",
@@ -41,6 +45,10 @@
   },
 {
     "name": "last_outcome_category",
+    "type": "STRING"
+  },
+{
+    "name": "context",
     "type": "STRING"
   }
 ]

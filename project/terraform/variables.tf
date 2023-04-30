@@ -4,7 +4,12 @@ variable "project" {
 }
 
 variable "create_bigquery" {
-  description = "Whether to create BigQuery tables"
+  description = "Whether to load BigQuery data"
+  type        = bool
+}
+
+variable "transform_bigquery" {
+  description = "Whether to transform BigQuery data"
   type        = bool
 }
 

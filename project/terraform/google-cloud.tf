@@ -1,5 +1,6 @@
 locals {
-  crime_schema = jsondecode(file("./schema/crime_schema.json"))
+  crime_schema           = jsondecode(file("./schema/crime_schema.json"))
+  crime_processed_schema = jsondecode(file("./schema/crime_processed_schema.json"))
 }
 
 terraform {
@@ -8,7 +9,6 @@ terraform {
     prefix = "terraform/state"
   }
 }
-
 
 provider "google" {
   project = var.project
@@ -30,23 +30,72 @@ resource "google_storage_bucket" "crime_raw_bucket" {
   location = var.region
 }
 
-resource "google_bigquery_table" "crime_table" {
-  count = var.create_bigquery ? 1 : 0
+resource "google_bigquery_table" "crime_raw_table" {
+  deletion_protection = false
+
+  schema = jsonencode(local.crime_schema)
 
   dataset_id = google_bigquery_dataset.crime_raw.dataset_id
-  table_id = "crime_table"
+  table_id   = "crime_raw_table"
+}
 
-  schema = locals.crime_schema
+resource "google_bigquery_table" "crime_processed_table" {
+  deletion_protection = false
 
-  external_data_configuration {
-    autodetect = false
-    source_format = "CSV"
-    source_uris = ["gs://${google_storage_bucket.crime_raw_bucket.name}/*.csv"]
-    csv_options {
-      skip_leading_rows = 1
-      field_delimiter = ";"
-      allow_quoted_newlines = false
-      quote = ""
+  schema = jsonencode(local.crime_processed_schema)
+
+  range_partitioning {
+    field = "year"
+    range {
+      start    = 2020
+      end      = 2030
+      interval = 1
+    }
+  }
+
+  clustering = ["month"]
+
+  dataset_id = google_bigquery_dataset.crime_processed.dataset_id
+  table_id   = "crime_processed_table"
+}
+
+
+resource "google_bigquery_job" "load_crime_job" {
+  count    = var.create_bigquery ? 1 : 0
+  job_id   = "load_crime_data_to_bq_2"
+  location = var.region
+
+  load {
+    source_uris = [
+      "gs://${google_storage_bucket.crime_raw_bucket.name}/*.csv"
+    ]
+
+    destination_table {
+      table_id = "projects/${google_bigquery_table.crime_raw_table.project}/datasets/${google_bigquery_table.crime_raw_table.dataset_id}/tables/${google_bigquery_table.crime_raw_table.table_id}"
+    }
+
+    skip_leading_rows     = 1
+    schema_update_options = ["ALLOW_FIELD_RELAXATION", "ALLOW_FIELD_ADDITION"]
+
+    write_disposition = "WRITE_APPEND"
+    autodetect        = true
+  }
+}
+
+resource "google_bigquery_job" "transform_crime_job" {
+  count    = var.transform_bigquery ? 1 : 0
+  job_id   = "transform_crime_data"
+  location = var.region
+
+  query {
+    query = "SELECT SPLIT(month, '-')[SAFE_OFFSET(0)] AS year, SPLIT(month, '-')[SAFE_OFFSET(1)] AS month, reported_by, crime_type FROM ${google_bigquery_table.crime_raw_table.project}:${google_bigquery_table.crime_raw_table.dataset_id}.${google_bigquery_table.crime_raw_table.table_id}"
+
+    destination_table {
+      table_id = google_bigquery_table.crime_processed_table.table_id
+    }
+
+    default_dataset {
+      dataset_id = google_bigquery_dataset.crime_raw.id
     }
   }
 }
