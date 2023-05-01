@@ -3,7 +3,7 @@ variable "project" {
   description = "The project name"
 }
 
-variable "create_bigquery" {
+variable "load_bigquery" {
   description = "Whether to load BigQuery data"
   type        = bool
 }
@@ -16,5 +16,9 @@ variable "transform_bigquery" {
 variable "region" {
   description = "Google region name."
   type        = string
-  default     = "europe-west1"
+}
+
+variable "crime_bucket_name" {
+  description = "Name for the bucket, which will store crime raw data."
+  type        = string
 }

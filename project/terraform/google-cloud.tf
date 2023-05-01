@@ -15,6 +15,9 @@ provider "google" {
   region  = var.region
 }
 
+resource "random_uuid" "job_id_generator" {
+}
+
 resource "google_bigquery_dataset" "crime_raw" {
   dataset_id = "crime_raw"
   location   = var.region
@@ -26,7 +29,7 @@ resource "google_bigquery_dataset" "crime_processed" {
 }
 
 resource "google_storage_bucket" "crime_raw_bucket" {
-  name     = "crime_raw_bucket"
+  name     = var.crime_bucket_name
   location = var.region
 }
 
@@ -53,18 +56,12 @@ resource "google_bigquery_table" "crime_processed_table" {
     }
   }
 
-  clustering = ["month"]
-
   dataset_id = google_bigquery_dataset.crime_processed.dataset_id
   table_id   = "crime_processed_table"
 }
 
-resource "random_uuid" "job_id_generator" {
-}
-
-
 resource "google_bigquery_job" "load_crime_job" {
-  count    = var.create_bigquery ? 1 : 0
+  count    = var.load_bigquery ? 1 : 0
   job_id   = "load_crime_data_to_bq_${random_uuid.job_id_generator.result}"
   location = var.region
 

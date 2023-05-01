@@ -1,29 +1,43 @@
-# Makefile
-
 # Variables
 PROJECT_ID = data-eng-bootcamp-project
-CRIME_RAW_BUCKET_NAME = crime_raw_bucket
+PROJECT_REGION = europe-west1
+CRIME_BUCKET_NAME = crime_bucket_unique_name # Make sure this does not change between executions, because it will mess up Terraform
 TERRAFORM_EXECUTABLE = /home/daniel/Documents/terraform
-TERRAFORM_VAR_FILE_INIT = ./vars/init.tfvars
-TERRAFORM_VAR_FILE_BQ = ./vars/bq.tfvars
-TERRAFORM_VAR_FILE_TRANSFORM = ./vars/transform.tfvars
 
 # Targets
 init:
 	cd ./terraform && $(TERRAFORM_EXECUTABLE) init
 
 apply-init: init
-	cd ./terraform && $(TERRAFORM_EXECUTABLE) apply -var-file=$(TERRAFORM_VAR_FILE_INIT) -auto-approve
+	cd ./terraform && $(TERRAFORM_EXECUTABLE) apply \
+  -var "project=$(PROJECT_ID)" \
+  -var "transform_bigquery=false" \
+  -var "load_bigquery=false" \
+  -var "region=${PROJECT_REGION}" \
+  -var "crime_bucket_name=${CRIME_BUCKET_NAME}" \
+  -auto-approve
 
 upload-data:
-	python3 ./util/upload_csv.py $(PROJECT_ID) $(CRIME_RAW_BUCKET_NAME) ./crime_data
+	python3 ./util/upload_csv.py $(PROJECT_ID) $(CRIME_BUCKET_NAME) ./crime_data
 
-apply-bq: init
-	cd ./terraform && $(TERRAFORM_EXECUTABLE) apply -var-file=$(TERRAFORM_VAR_FILE_BQ) -auto-approve
+apply-load: init
+	cd ./terraform && $(TERRAFORM_EXECUTABLE) apply \
+  -var "project=$(PROJECT_ID)" \
+  -var "transform_bigquery=false" \
+  -var "load_bigquery=true" \
+  -var "region=${PROJECT_REGION}" \
+  -var "crime_bucket_name=${CRIME_BUCKET_NAME}" \
+  -auto-approve
 
 apply-transform: init
-	cd ./terraform && $(TERRAFORM_EXECUTABLE) apply -var-file=$(TERRAFORM_VAR_FILE_TRANSFORM) -auto-approve
+	cd ./terraform && $(TERRAFORM_EXECUTABLE) apply \
+  -var "project=$(PROJECT_ID)" \
+  -var "transform_bigquery=true" \
+  -var "load_bigquery=false" \
+  -var "region=${PROJECT_REGION}" \
+  -var "crime_bucket_name=${CRIME_BUCKET_NAME}" \
+  -auto-approve
 
 # Default target
-all: init apply-init upload-data apply-bq apply-transform
+all: init apply-init upload-data apply-load apply-transform
 
