@@ -107,8 +107,6 @@ in order to make the future data processing easier, like including Google Functi
 
 ## TODO
 
-- Store the terraform state in a bucket - terraform is updated, only the bucket creation is missing, make sure it is not
-  global? backend-config can be used, so possibly it is enough to set the name only in makefile
 - Test with all data and make report
 - Make screenshot of the report
 - Remove transform variable from terraform if query will not work there

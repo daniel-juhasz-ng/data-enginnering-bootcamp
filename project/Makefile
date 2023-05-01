@@ -1,12 +1,16 @@
 # Variables
 PROJECT_ID = data-eng-bootcamp-project
 PROJECT_REGION = europe-west1
+PROJECT_BACKEND_BUCKET_NAME = data-eng-bootcamp-tf-state # Make sure this does not change between executions, because it will mess up Terraform
 CRIME_BUCKET_NAME = crime_bucket_unique_name # Make sure this does not change between executions, because it will mess up Terraform
 TERRAFORM_EXECUTABLE = /home/daniel/Documents/terraform
 
 # Targets
+create-tf-be:
+    gcloud storage buckets create gs://${PROJECT_BACKEND_BUCKET_NAME}
+
 init:
-	cd ./terraform && $(TERRAFORM_EXECUTABLE) init
+	cd ./terraform && $(TERRAFORM_EXECUTABLE) init -backend-config="bucket=${PROJECT_BACKEND_BUCKET_NAME}"
 
 apply-init: init
 	cd ./terraform && $(TERRAFORM_EXECUTABLE) apply \
@@ -39,5 +43,5 @@ apply-transform: init
   -auto-approve
 
 # Default target
-all: init apply-init upload-data apply-load apply-transform
+all: create-tf-be init apply-init upload-data apply-load apply-transform
 

@@ -4,6 +4,8 @@ locals {
 }
 
 terraform {
+  required_version = "~> 1.4.4"
+
   backend "gcs" {
     bucket = "data-eng-bootcamp-tf-state"
     prefix = "terraform/state"
