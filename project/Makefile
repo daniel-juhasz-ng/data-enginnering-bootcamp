@@ -13,16 +13,16 @@ init:
 	cd ./terraform && $(TERRAFORM_EXECUTABLE) init
 
 apply-init: init
-	cd ./terraform && $(TERRAFORM_EXECUTABLE) apply -var-file=$(TERRAFORM_VAR_FILE_INIT)
+	cd ./terraform && $(TERRAFORM_EXECUTABLE) apply -var-file=$(TERRAFORM_VAR_FILE_INIT) -auto-approve
 
 upload-data:
 	python3 ./util/upload_csv.py $(PROJECT_ID) $(CRIME_RAW_BUCKET_NAME) ./crime_data
 
 apply-bq: init
-	cd ./terraform && $(TERRAFORM_EXECUTABLE) apply -var-file=$(TERRAFORM_VAR_FILE_BQ)
+	cd ./terraform && $(TERRAFORM_EXECUTABLE) apply -var-file=$(TERRAFORM_VAR_FILE_BQ) -auto-approve
 
 apply-transform: init
-	cd ./terraform && $(TERRAFORM_EXECUTABLE) apply -var-file=$(TERRAFORM_VAR_FILE_TRANSFORM)
+	cd ./terraform && $(TERRAFORM_EXECUTABLE) apply -var-file=$(TERRAFORM_VAR_FILE_TRANSFORM) -auto-approve
 
 # Default target
 all: init apply-init upload-data apply-bq apply-transform

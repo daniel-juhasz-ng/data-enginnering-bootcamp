@@ -1,6 +1,7 @@
 import os
 import sys
 from google.cloud import storage
+from tqdm import tqdm
 
 
 if len(sys.argv) != 4:
@@ -17,8 +18,8 @@ storage_client = storage.Client(project=project_id)
 
 bucket = storage_client.bucket(bucket_name)
 
-for root, dirs, files in os.walk(directory_path):
-    for file in files:
+for root, dirs, files in tqdm(os.walk(directory_path)):
+    for file in tqdm(files):
         if file.endswith('.csv'):
             file_path = os.path.join(root, file)
             blob = bucket.blob(file)

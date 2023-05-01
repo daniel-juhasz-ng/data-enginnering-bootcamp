@@ -1,3 +1,3 @@
-create_bigquery = false
+create_bigquery    = false
 transform_bigquery = true
-project         = "data-eng-bootcamp-project"
+project            = "data-eng-bootcamp-project"

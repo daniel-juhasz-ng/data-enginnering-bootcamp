@@ -20,7 +20,7 @@ The project utilizes Google Cloud and its offered features, including:
 ## How to
 
 
-Make sure that python is installed
+Make sure that python is installed (Terraform scripts run with auto approve!)
 
 1. Create project by hand
 2. Make sure billing is enabled
@@ -45,7 +45,4 @@ Make sure that python is installed
 ## TODO
 
 - Store the terraform state in a bucket - terraform is updated, only the bucket creation is missing, make sure it is not global?
-- Maybe add logging to the upload scripts to know where we are
-- Add auto apply to terraform
-- Use unique ID for bigqweuy jobs
-- Add maybe another chart to the report
+- Add some explaination for the partitioning and clustering decision 

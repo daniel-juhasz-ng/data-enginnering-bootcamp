@@ -1,4 +1,5 @@
 google-cloud-storage
 grpcio
 google-api-core
+tqdm
 

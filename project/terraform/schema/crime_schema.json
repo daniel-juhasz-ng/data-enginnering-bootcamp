@@ -1,10 +1,6 @@
 [
   {
-    "name": "Crime_ID",
-    "type": "STRING"
-  },
-  {
-    "name": "id",
+    "name": "crime_id",
     "type": "STRING"
   },
 {
