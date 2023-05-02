@@ -17,9 +17,6 @@ provider "google" {
   region  = var.region
 }
 
-resource "random_uuid" "job_id_generator" {
-}
-
 resource "google_bigquery_dataset" "crime_raw" {
   dataset_id = "crime_raw"
   location   = var.region
@@ -64,7 +61,7 @@ resource "google_bigquery_table" "crime_processed_table" {
 
 resource "google_bigquery_job" "load_crime_job" {
   count    = var.load_bigquery ? 1 : 0
-  job_id   = "load_crime_data_to_bq_${random_uuid.job_id_generator.result}"
+  job_id   = "load_crime_data_to_bq"
   location = var.region
 
   load {
@@ -81,6 +78,29 @@ resource "google_bigquery_job" "load_crime_job" {
 
     write_disposition = "WRITE_APPEND"
     autodetect        = false
+  }
+}
+
+resource "google_bigquery_job" "transform_crime_job" {
+  count    = var.transform_bigquery ? 1 : 0
+  job_id   = "transform_crime_data"
+  location = var.region
+
+  query {
+    query = "SELECT CAST(SPLIT(month, '-')[SAFE_OFFSET(0)] AS INT64) AS year, CAST(SPLIT(month, '-')[SAFE_OFFSET(1)] AS INT64) AS month, reported_by, crime_type FROM `${google_bigquery_table.crime_raw_table.project}.${google_bigquery_table.crime_raw_table.dataset_id}.${google_bigquery_table.crime_raw_table.table_id}`"
+
+    destination_table {
+      project_id = google_bigquery_table.crime_processed_table.project
+      dataset_id = google_bigquery_table.crime_processed_table.dataset_id
+      table_id   = google_bigquery_table.crime_processed_table.table_id
+    }
+
+    allow_large_results = true
+    flatten_results     = true
+
+    script_options {
+      key_result_statement = "LAST"
+    }
   }
 }
 
