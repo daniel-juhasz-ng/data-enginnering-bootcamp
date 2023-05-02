@@ -78,9 +78,9 @@ utilization, the monthly distribution of crimes in the given year and the breakd
        point as an integer range partition key.
     4. The end reports are visualized in Google Data Studio
 
-The end result looks like the following
+The end result looks like the following and can be viewed [here](https://lookerstudio.google.com/s/msXfgL38CXw)
 
-![data report image](images/data_report.png "Architecture")
+![data report image](images/data_report.png "Data Report")
 
 The pipeline is automated to an extent that it is easy to reproduce. However, there are improvements that could be made
 in order to make the future data processing easier, like including Google Function to fetch new monthly data and upload.
@@ -89,10 +89,11 @@ in order to make the future data processing easier, like including Google Functi
 
 1. Create project in your preferred way make sure billing is enabled
 2. Install gcloud and
-   authenticate as
+   authenticate with `gcloud auth application-default login --project ${PROJECT_ID}` as 
    described [here](https://registry.terraform.io/providers/hashicorp/google/latest/docs/guides/provider_reference#running-terraform-on-your-workstation),
    so you can run the Terraform commands
 3. Update variables in the Makefile
+4. Create the bucket for Terraform with `make create-tf-be`
 4. Run Terraform with `make apply-init`
 5. Upload the files
     1. Download crime data from the [official site](https://data.police.uk/data/) to a directory in the project root
@@ -107,6 +108,4 @@ in order to make the future data processing easier, like including Google Functi
 
 ## TODO
 
-- Test with all data and make report
-- Make screenshot of the report
 - Remove transform variable from terraform if query will not work there

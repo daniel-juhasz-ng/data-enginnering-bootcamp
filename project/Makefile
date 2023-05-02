@@ -1,13 +1,15 @@
 # Variables
-PROJECT_ID = data-eng-bootcamp-project
+PROJECT_ID = crime-data-project-385516
 PROJECT_REGION = europe-west1
-PROJECT_BACKEND_BUCKET_NAME = data-eng-bootcamp-tf-state # Make sure this does not change between executions, because it will mess up Terraform
-CRIME_BUCKET_NAME = crime_bucket_unique_name # Make sure this does not change between executions, because it will mess up Terraform
+# Make sure this does not change between executions, because it will mess up Terraform
+PROJECT_BACKEND_BUCKET_NAME = crime-data-project-tf-state
+# Make sure this does not change between executions, because it will mess up Terraform
+CRIME_BUCKET_NAME = crime-bucket-unique-name
 TERRAFORM_EXECUTABLE = /home/daniel/Documents/terraform
 
 # Targets
 create-tf-be:
-    gcloud storage buckets create gs://${PROJECT_BACKEND_BUCKET_NAME}
+	gcloud storage buckets create gs://${PROJECT_BACKEND_BUCKET_NAME} --project ${PROJECT_ID} --location ${PROJECT_REGION}
 
 init:
 	cd ./terraform && $(TERRAFORM_EXECUTABLE) init -backend-config="bucket=${PROJECT_BACKEND_BUCKET_NAME}"
