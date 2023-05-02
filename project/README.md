@@ -78,7 +78,7 @@ utilization, the monthly distribution of crimes in the given year and the breakd
        point as an integer range partition key.
     4. The end reports are visualized in Google Data Studio
 
-The end result looks like the following and can be viewed [here](https://lookerstudio.google.com/s/msXfgL38CXw)
+The end result looks like the following and can be viewed [here](https://lookerstudio.google.com/reporting/f8c0dedf-a371-48cb-95de-d3b07b705e8e)
 
 ![data report image](images/data_report.png "Data Report")
 
@@ -102,10 +102,6 @@ in order to make the future data processing easier, like including Google Functi
        ./requirements.txt`
     3. Upload by running `make upload-data`
 6. Run Terraform again to load uploaded data with `make apply-load`
-7. Manually in Google BigQuery console run the `transform.sql` script, update the table references to your project id (
-   for some reason this query execution was not working inside terraform, hence this solution, sorry for that)
+7. Run Terraform again to transform raw data for the reports with `make apply-transform`
 8. Create the Report with Studio
 
-## TODO
-
-- Remove transform variable from terraform if query will not work there
